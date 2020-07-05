@@ -56,6 +56,9 @@ class ArticleController extends Controller{
     	$data = $request->all();
         unset($data['_token']);
         unset($data['_method']);
+        $slug = strtolower($data['judul']);
+    	$slug = str_replace(" ", "-", $slug);
+    	$data['slug'] = $slug;
 
         $article = ArticleModel::update($id, $data);
         return redirect('/artikel');
